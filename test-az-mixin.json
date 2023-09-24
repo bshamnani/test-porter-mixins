@@ -1,0 +1,19 @@
+{
+    "schemaType": "ParameterSet",
+    "schemaVersion": "1.0.1",
+    "name": "test-az-mixin",
+    "parameters": [
+        {
+            "name": "resource_group",
+            "source": {
+                "value": "test-az-mixin-bhavesh"
+            }
+        },
+        {
+            "name": "parameter-secret",
+            "source": {
+                "value": "eastus2"
+            }
+        }
+    ]
+}
