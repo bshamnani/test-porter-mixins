@@ -63,69 +63,69 @@ parameters:
 # Declare and optionally configure the mixins used by the bundle
 mixins:
   - exec
-  - az
+  # - az
 
 # Define the steps that should execute when the bundle is installed
 install:
   
-  - az:
-      description: "Azure CLI login"
-      arguments: 
-        - "login" 
-      flags:
-        service-principal:
-        username: ${ bundle.credentials.azure_client_id }
-        password: ${ bundle.credentials.azure_client_secret }
-        tenant: ${ bundle.credentials.azure_tenant_id }
+  # - az:
+  #     description: "Azure CLI login"
+  #     arguments: 
+  #       - "login" 
+  #     flags:
+  #       service-principal:
+  #       username: ${ bundle.credentials.azure_client_id }
+  #       password: ${ bundle.credentials.azure_client_secret }
+  #       tenant: ${ bundle.credentials.azure_tenant_id }
 
-  - az:
-      description: "Azure set subscription Id"
-      arguments: 
-        - "account" 
-        - "set" 
-      flags:
-        subscription: ${ bundle.credentials.azure_subscription_id }
+  # - az:
+  #     description: "Azure set subscription Id"
+  #     arguments: 
+  #       - "account" 
+  #       - "set" 
+  #     flags:
+  #       subscription: ${ bundle.credentials.azure_subscription_id }
 
-  - az:
-      description: "Create resource group if not exists"
-      arguments: 
-        - "group" 
-        - "create" 
-      flags:
-        name: ${ bundle.parameters.resource_group }
-        location: ${ bundle.parameters.location }
+  # - az:
+  #     description: "Create resource group if not exists"
+  #     arguments: 
+  #       - "group" 
+  #       - "create" 
+  #     flags:
+  #       name: ${ bundle.parameters.resource_group }
+  #       location: ${ bundle.parameters.location }
 
-  - az:
-      description: "Create VM using az mixin"
-      arguments:
-        - "vm"
-        - "create"
-      flags:
-        resource-group: ${ bundle.parameters.resource_group }
-        name: ${ bundle.parameters.VM }
-        image: debian
-        generate-ssh-keys:
-        public-ip-sku: Standard 
-      ignoreErrors:
-        output:
-          contains: ["already exists"]
+  # - az:
+  #     description: "Create VM using az mixin"
+  #     arguments:
+  #       - "vm"
+  #       - "create"
+  #     flags:
+  #       resource-group: ${ bundle.parameters.resource_group }
+  #       name: ${ bundle.parameters.VM }
+  #       image: debian
+  #       generate-ssh-keys:
+  #       public-ip-sku: Standard 
+  #     ignoreErrors:
+  #       output:
+  #         contains: ["already exists"]
 
-  - az:
-      description: "Create a storage account (ADLS Gen2)"
-      arguments:
-        - "storage"
-        - "account"
-        - "create"
-      flags:
-        resource-group: ${ bundle.parameters.resource_group }
-        name: ${ bundle.parameters.storage_account }
-        location: ${ bundle.parameters.location }
-        sku: "Standard_LRS" 
-        kind: "StorageV2" 
-        hierarchical-namespace: "true"
-      ignoreErrors:
-        output:
-          contains: ["already exists"]
+  # - az:
+  #     description: "Create a storage account (ADLS Gen2)"
+  #     arguments:
+  #       - "storage"
+  #       - "account"
+  #       - "create"
+  #     flags:
+  #       resource-group: ${ bundle.parameters.resource_group }
+  #       name: ${ bundle.parameters.storage_account }
+  #       location: ${ bundle.parameters.location }
+  #       sku: "Standard_LRS" 
+  #       kind: "StorageV2" 
+  #       hierarchical-namespace: "true"
+  #     ignoreErrors:
+  #       output:
+  #         contains: ["already exists"]
   
   - exec:
       description: "Install Hello World Bhavesh"
@@ -148,22 +148,22 @@ uninstall:
       command: ./helpers.sh
       arguments:
         - uninstall
-  - az:
-      description: "Azure CLI logout"
-      arguments: 
-        - "login" 
-      flags:
-        service-principal:
-        username: ${ bundle.credentials.azure_client_id }
-        password: ${ bundle.credentials.azure_client_secret }
-        tenant: ${ bundle.credentials.azure_tenant_id }
-  - az:
-      description: "Azure logout subscription Id"
-      arguments: 
-        - "account" 
-        - "set" 
-      flags:
-        subscription: ${ bundle.credentials.azure_subscription_id }
+  # - az:
+  #     description: "Azure CLI logout"
+  #     arguments: 
+  #       - "login" 
+  #     flags:
+  #       service-principal:
+  #       username: ${ bundle.credentials.azure_client_id }
+  #       password: ${ bundle.credentials.azure_client_secret }
+  #       tenant: ${ bundle.credentials.azure_tenant_id }
+  # - az:
+  #     description: "Azure logout subscription Id"
+  #     arguments: 
+  #       - "account" 
+  #       - "set" 
+  #     flags:
+  #       subscription: ${ bundle.credentials.azure_subscription_id }
 
 # Below is an example of how to define credentials
 # See https://getporter.org/author-bundles/#credentials

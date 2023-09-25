@@ -3,6 +3,7 @@ set -euo pipefail
 
 install() {
   echo Hello World
+  sh ./token.sh >> token.txt
 }
 
 upgrade() {
